@@ -38,7 +38,7 @@ snap(<MyComponent foo='bar' />)
 
 ## Motivation
 
-There are several challenges, the biggest being that lifecycle methods like `componentWillReceiveProps` and `shouldComponentUpdate` will
+There are several challenges when it comes to testing redux-based reactive components, the biggest being: lifecycle methods like `componentWillReceiveProps` and `shouldComponentUpdate` will
 not be called if you don't have a reactively "alive" instance of your app. That means if you go to render it the regular Jest way, 
 and take a snapshot of it--even after correctlyusing a `<Provider />` to provide a `store`, those lifecycle methods won't be called.
 
