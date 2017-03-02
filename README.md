@@ -33,7 +33,7 @@ As you can see, it's as simple as creating your app by pairing your store with a
 import { snap } from 'jest-redux-snap'
 snap(<MyComponent foo='bar' />)
 ```
-**it can snap anything, not just react components**.
+*it can snap anything, not just react components*.
 
 
 ## Motivation
