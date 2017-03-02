@@ -76,7 +76,9 @@ Only `componentDidMount` will be called in both calls to `renderer.create()`.`co
 and methods such as `componentWillEnter` from `ReactTransitionGroup` will not! 
 The reason is because the component tree thinks thinks its being rendered for the first time in both cases. 
 
-There's a few other similar such issues we solve. What **Jest Redux Snap** does is let you get down to business and allow you
+There's a few other similar such issues we solve. 
+
+What **Jest Redux Snap** does is let you get down to business and allow you
 to think of your `app` as one cohesive redux-specific unit you can operate on in the obvious ways (e.g. `dispatch`, `getState`, etc).
 
 We like to think **Jest Redux Snap** lets you treat the components your testing as if they are ***"alive"*** and truly reactive.
