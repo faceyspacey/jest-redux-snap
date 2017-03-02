@@ -325,6 +325,13 @@ const store = configureStore()
 shoot(MyComponent, {}, store)
 ```
 
+*use it to snap anything because you're too lazy to also import `snap`:*
+
+```javascript
+shoot({ foo: 'bar' })
+shoot(<My Component />)
+```
+
 *provide configuration options for configureStore(options):*
 ```javascript
 const options = { loadUsers: true, loadOtherEntities: true }
