@@ -83,6 +83,7 @@ We like to think **Jest Redux Snap** lets you treat the components your testing 
 And of course while "snapping" all along the way.
 
 
+# API:
 
 ## createApp(store, ComponentClass, [props | mapStateToProps])
 
