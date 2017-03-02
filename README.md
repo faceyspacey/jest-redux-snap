@@ -40,7 +40,7 @@ snap(<MyComponent foo='bar' />)
 
 There are several challenges when it comes to testing Redux-based reactive components, the biggest being: lifecycle methods like `componentWillReceiveProps` and `shouldComponentUpdate` will
 not be called if you don't have a reactively "alive" instance of your app. That means if you go to render it the regular Jest way, 
-and take a snapshot of it--even after correctlyusing a `<Provider />` to provide a `store`, those lifecycle methods won't be called.
+and take a snapshot of it--even after correctly using a `<Provider />` to provide a `store`, those lifecycle methods won't be called.
 
 For example:
 
@@ -72,8 +72,9 @@ const tree = instance.toJSON()
 expect(tree).toMatchSnapshot()
 ```
 
-Only `componentDidMount` will be called in both calls to `renderer.create()`. The reason is because the component
-tree thinks thinks its being rendered for the first time in both cases. 
+Only `componentDidMount` will be called in both calls to `renderer.create()`.`componentWillReceiveProps`, `shouldComponentUpdate` 
+and perhaps methods such as `componentWillEnter` from `ReactTransitionGroup` will not! 
+The reason is because the component tree thinks thinks its being rendered for the first time in both cases. 
 
 There's a few other similar such issues we solve. What **Jest Redux Snap** does is let you get down to business and allow you
 to think of your `app` as one cohesive redux-specific unit you can operate on in the obvious ways (e.g. `dispatch`, `getState`, etc).
