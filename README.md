@@ -79,7 +79,7 @@ The reason is because the component tree thinks thinks its being rendered for th
 There's a few other similar such issues we solve. 
 
 What **Jest Redux Snap** does is let you get down to business and allow you
-to think of your `app` as a single reactive unit which you can operate on in the obvious ways (e.g. `dispatch`, `getState`, etc).
+to think of your `app` as a single reactive unit which you can operate on in the obvious ways (e.g. `snap`, `dispatch`, `getState`, etc).
 
 We like to think **Jest Redux Snap** lets you treat the components your testing as if they are ***"alive"*** and truly reactive.
 And of course while "snapping" all along the way.
