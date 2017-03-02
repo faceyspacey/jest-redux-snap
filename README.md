@@ -92,4 +92,4 @@ to achieve snapshots of both the mocked and unmocked versions of the child compo
 In other words, using *mocking* in Jest, you *CANNOT* have the same indirectly imported child component/module
 *mocked and unmocked within the same file*, since mocks operate statically on an entire-file-basis. 
 
-This is a very convenient way to capture every "angle" of your components :)
+*Jest Redux Snap* solves that problem, making it "a snap" to capture every "angle" of your components :)
