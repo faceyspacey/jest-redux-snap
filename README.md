@@ -288,7 +288,7 @@ import { createApp } from 'jest-redux-snap'
 import configureStore from './configureStore'
 
 export default function shoot(Component, props, ...args) {
-  if (!isFactory(Component)) {
+  if (!isClass(Component)) {
     return snap(Component)
   }
 
@@ -300,8 +300,6 @@ export default function shoot(Component, props, ...args) {
 
   return app
 }
-
-const isStore = arg => typeof arg === 'object' && arg.getState
 ```
 
 And here is the various ways you could use it:
