@@ -23,17 +23,17 @@ app.snap()
 
 app.dispatch({ type: 'FOO' })
 
-app.snap() // snapshot reflex updated state and component tree!
+app.snap() // snapshot reflects updated state and component tree!
 ```
 
 As you can see, it's as simple as creating your app by pairing your store with a component, and then dispatching and snapping at will.
 
-*we also have a simple `snap` function for when don't want to dispatch additional actions:*
+*we also have a simple multi-purpose `snap` function for when you don't plan to dispatch additional actions:*
 ```javascript
 import { snap } from 'jest-redux-snap'
 snap(<MyComponent foo='bar' />)
 ```
-
+**it can snap anything, not just react components**.
 
 
 ## Motivation
