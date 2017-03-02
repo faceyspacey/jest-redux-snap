@@ -23,7 +23,7 @@ snap(MyComponent)
 snap(MyComponent, { foo: 'bar' })
 ```
 
-### target: <ReactElement />
+### target: `<ReactElement />`
 ```javascript
 snap(<MyComponent foo='bar' />)
 ```
@@ -39,7 +39,7 @@ snap(instance)
 ```javascript
 import renderer from 'react-test-renderer'
 const instance = renderer.create(<MyComponent />)
-const tree = instace.toJSON()
+const tree = instance.toJSON()
 snap(tree)
 ```
 
