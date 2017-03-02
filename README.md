@@ -1,19 +1,177 @@
-# jest-redux-snap
+# Jest Redux Snap
 
-## createApp()
+*Jest Redux Snap* solves a core problem with testing Redux apps: keeping your components up to date as you take snapshots of them.
+
+It lets you think of the area of your application that you're focusing on as an `app` object, which you can call `app.snap()` on any time you want,
+all while staying up to date with your Redux store.
+
+
+## Installation
+```bash
+yarn add --dev jest-redux-snap
+```
+
+## Usage
+
+```javascript
+import { createApp } from 'jest-redux-snap'
+
+const store = configureStore() 
+const app = createApp(store, MyComponent)
+
+app.snap()
+
+app.dispatch({ type: 'FOO' })
+
+app.snap() // snapshot reflex updated state and component tree!
+```
+
+As you can see, it's as simple as creating your app by pairing your store with a component, and then dispatching and snapping at will.
+
+*we also have a simple `snap` function for when don't want to dispatch additional actions:*
+```javascript
+import { snap } from 'jest-redux-snap'
+snap(<MyComponent foo='bar' />)
+```
+
+
+
+## Motivation
+
+There are several challenges, the biggest being that lifecycle methods like `componentWillReceiveProps` and `shouldComponentUpdate` will
+not be called if you don't have a reactively "alive" instance of your app. That means if you go to render it the regular Jest way, 
+and take a snapshot of it--even after correctlyusing a `<Provider />` to provide a `store`, those lifecycle methods won't be called.
+
+For example:
+
+```javascript
+import Provider from 'react-redux'
+import renderer from 'react-test-renderer'
+import configureStore from './configureStore'
+
+const store = configureStore()
+
+const instance = renderer.create(
+  <Provider store={store}>
+    <MyConnectedComponent />
+  </Provider>
+)
+
+const tree = instance.toJSON()
+expect(tree).toMatchSnapshot()
+
+store.dispatch({ type: 'FOO' })
+
+
+const instance = renderer.create( // not all lifecycle methods called!
+  <Provider store={store}>
+    <MyConnectedComponent />
+  </Provider>
+)
+const tree = instance.toJSON()
+expect(tree).toMatchSnapshot()
+```
+
+Only `componentDidMount` will be called in both calls to `renderer.create()`. The reason is because the component
+tree thinks thinks its being rendered for the first time in both cases. 
+
+There's a few other similar such issues we solve. What **Jest Redux Snap** does is let you get down to business and allow you
+to think of your `app` as one cohesive redux-specific unit you can operate on in the obvious ways (e.g. `dispatch`, `getState`, etc).
+
+
+
+## createApp(store, ComponentClass, [props | mapStateToProps])
+
+*no props:*
+```javascript
+const store = configureStore() // we recommend you have a configureStore function just for tests
+const app = createApp(store, MyComponent)
+```
+
+*with props:*
+```javascript
+const store = configureStore() // you can setup state by dispatching actions before its returned
+const app = createApp(store, MyComponent, { foo: 'bar' })
+```
+
+*with mapStateToProps:*
+```javascript
+const store = configureStore()
+const mapStateToProps = state => ({ foo: state.foo })
+const app = createApp(store, MyComponent, mapStateToProps)
+```
+
+The idea of `mapStateToProps` is simply that you may be taking snapshots of a component deep within your component tree (i.e. not your `<App />` root component)
+and that nested component may be getting props passed to it which are determined from Redux state. So `mapStateToProps` solves that problem.
+The props passed to your parent component will stay up to date as you `dispatch` actions against the `store`.
+
+That said, `mapStateToProps` is just a frill feature. The most value you will get from **Jest Redux Snap** is from how even more deeply nested components stay up to date
+with the redux store.  
+
 
 ### app.snap()
+Take a snapshot of the reactive component contained within `app`. If you `dispatch` any actions on the
+store, no more work is required to capture an updated snapshot of the component. Just call `app.snap()` again.
+
+Example:
+
+```javascript
+const store = configureStore()
+const app = createApp(store, MyComponent)
+
+app.snap()
+
+app.dispatch({ type: 'FOO' })
+app.snap()
+
+app.dispatch({ type: 'BAR' })
+app.snap()
+```
+
+So clearly this is the where using **Jest Redux Snap** pays off. Enjoy!
 
 ### app.dispatch()
+*Same as `store.dispatch(action)`*. It is available here so you can think of your component as one *atomic unit* known as as `app`.
 
 ### app.getState()
+*Same as `store.getState()`*
 
 ### app.tree()
+Equivalent to the following:
+
+```
+import renderer from 'react-test-renderer'
+const instance = renderer.create(<MyComponent />)
+const tree = instance.toJSON()
+```
+
+with one important capability: it stays up to date as you dispatch against the `app`'s associated store.
 
 ### app.component()
+Equivalent of:
+
+```
+import renderer from 'react-test-renderer'
+const instance = renderer.create(<MyComponent />)
+```
+
+But, again, of course it reactively alive! Moo ha ha!!!
 
 ### app.element()
 **alias: app.story()**
+
+If you passed `MyComponent` to `createApp(store, MyComponent)`, you will be returned from `app.element()`: 
+
+```javascript
+<MyComponent foo='bar' />
+```
+
+This can be helpful if you want to pass it to `renderer.create()` manually or if you ever want to render your JSX in another context. 
+
+For example [Jest Storybook Facade](https://github.com/faceyspacey/jest-storybook-facade)
+allows you to return React elements from your `it` tests to display the components used in your tests in React Storybook!!! Hence,
+the alias `app.store()`!
+
 
 ## snap(target, [props], [deep = true])
 
@@ -92,4 +250,4 @@ to achieve snapshots of both the mocked and unmocked versions of the child compo
 In other words, using *mocking* in Jest, you *CANNOT* have the same indirectly imported child component/module
 *mocked and unmocked within the same file*, since mocks operate statically on an entire-file-basis. 
 
-*Jest Redux Snap* solves that problem, making it "a snap" to capture every "angle" of your components :)
+**Jest Redux Snap** solves that problem, making it "a snap" to capture every "angle" of your components :)
