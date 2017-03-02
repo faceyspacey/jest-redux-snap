@@ -89,7 +89,7 @@ This is extremely useful for Jest, because it saves
 you from having to mock child components, which in turn saves you from having to create a separate file 
 to achieve snapshots of both the mocked and unmocked versions of the child component. 
 
-In other words, using *mocking* you can't have the same file
-mocked and unmocked in Jest, since mocks operate statically on an entire-file-basis. 
+In other words, using *mocking* in Jest, you can't have the same indirectly imported child component/module
+mocked and unmocked within the same file, since mocks operate statically on an entire-file-basis. 
 
 This is a very convenient way to capture every "angle" of your components :)
