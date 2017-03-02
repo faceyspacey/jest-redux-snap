@@ -332,4 +332,6 @@ shoot(MyComponent, {}, options)
 ```
 
 So the idea with the last example is that your `configureStore` function takes arguments that tell it what asyncronous data-loading 
-actions to perform, and it does it, returning you a fully stocked store. 
+actions to perform, and it does it, returning you a fully stocked store! That way you don't have to worry about setting up your store
+throughout your tests. You likely have a few ways you commonly fill the store with data. Use the additional `...args` passed to 
+`configureStore()` to tell it what asyncronous actions to dispatch. Make sure you have the responses mocked of course. 

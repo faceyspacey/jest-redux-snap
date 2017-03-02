@@ -26,7 +26,7 @@ export default (store, ReactComponentClass, mapStateToProps) => {
   const instance = renderer.create(element)
   const app = createRenderer(instance)
 
-  addMethods(app, store, instance)
+  addMethods(app, store, element)
 
   return app
 }

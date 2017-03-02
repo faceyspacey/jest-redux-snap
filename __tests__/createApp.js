@@ -83,6 +83,22 @@ describe('createApp(store, Class) ', () => {
     console.log(app.getState())
     expect(app.getState()).toMatchSnapshot()
   })
+
+  it('app.snapState()', () => {
+    const store = configureStore()
+    const app = createApp(store, Component)
+
+    app.dispatch({ type: 'INCREMENT' })
+
+    app.snapState()
+  })
+
+  it('app.snapAction()', () => {
+    const store = configureStore()
+    const app = createApp(store, Component)
+
+    app.snapAction({ type: 'INCREMENT' })
+  })
 })
 
 
