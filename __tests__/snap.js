@@ -11,7 +11,7 @@ describe('snap(target, props) - deep', () => {
   const Target = DeepComponent
 
   it('target == class', () => {
-    const app = snap(Target, { className: 'foo' }, false)
+    const app = snap(Target, { className: 'foo' })
 
     console.log(app.tree())
     console.log(app.component())

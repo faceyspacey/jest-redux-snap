@@ -155,7 +155,7 @@ const tree = instance.toJSON()
 with one important capability: it stays up to date as you dispatch against the `app`'s associated store.
 
 ### app.component()
-Equivalent of:
+The equivalent of:
 
 ```
 import renderer from 'react-test-renderer'
@@ -177,7 +177,27 @@ This can be helpful if you want to pass it to `renderer.create()` manually or if
 
 For example [Jest Storybook Facade](https://github.com/faceyspacey/jest-storybook-facade)
 allows you to return React elements from your `it` tests to display the components used in your tests in React Storybook!!! Hence,
-the alias `app.store()`!
+the alias `app.story()`!
+
+### app.snapState()
+The equivalent of: 
+
+```
+expect(app.getState()).toMatchSnapshot()
+```
+
+### app.snapAction(action)
+The equivalent of: 
+
+```
+expect(action).toMatchSnapshot() // note: it will NOT snapshot thunks
+app.dispatch(action)
+expect(app.getState()).toMatchSnapshot()
+app.snap()
+```
+
+So that's 2 or 3 snapshots it will take, depending on whether you supply a thunk or an action object.
+
 
 
 ## snap(target, [props], [deep = true])
@@ -258,3 +278,60 @@ In other words, using *mocking* in Jest, you *CANNOT* have the same indirectly i
 *mocked and unmocked within the same file*, since mocks operate statically on an entire-file-basis. 
 
 **Jest Redux Snap** solves that problem, making it "a snap" to capture every "angle" of your components :)
+
+
+# Recommendation (create a `shoot()` function):
+It could look like this (and in fact this is what we use):
+
+```javascript
+import { createApp } from 'jest-redux-snap'
+import configureStore from './configureStore'
+
+export default function shoot(Component, props, ...args) {
+  if (!isFactory(Component)) {
+    return snap(Component)
+  }
+
+  const store = isStore(args[0]) ? args[0] : configureStore(...args)
+  const app = createApp(store, Component, props)
+
+  app.snap()
+  app.snapState()
+
+  return app
+}
+
+const isStore = arg => typeof arg === 'object' && arg.getState
+```
+
+And here is the various ways you could use it:
+
+
+*no need to provide store*:
+```javascript
+shoot(MyComponent)
+```
+
+```javascript
+shoot(MyComponent, { foo: 'bar' })
+```
+
+```javascript
+const mapState = state => ({ foo: state.foo })
+shoot(MyComponent, mapState)
+```
+
+*provide store anyway:*
+```javascript
+const store = configureStore()
+shoot(MyComponent, {}, store)
+```
+
+*provide configuration options for configureStore(options):*
+```javascript
+const options = { loadUsers: true, loadOtherEntities: true }
+shoot(MyComponent, {}, options)
+```
+
+So the idea with the last example is that your `configureStore` function takes arguments that tell it what asyncronous data-loading 
+actions to perform, and it does it, returning you a fully stocked store. 
