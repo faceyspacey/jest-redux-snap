@@ -284,7 +284,7 @@ In other words, using *mocking* in Jest, you *CANNOT* have the same indirectly i
 It could look like this (and in fact this is what we use):
 
 ```javascript
-import { createApp } from 'jest-redux-snap'
+import { createApp, isClass, isStore } from 'jest-redux-snap'
 import configureStore from './configureStore'
 
 export default function shoot(Component, props, ...args) {
