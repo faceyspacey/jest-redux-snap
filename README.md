@@ -19,27 +19,28 @@
 
 ### target: Component Class
 ```javascript
-snap(ReactElement) 
-snap(ReactElement, { foo: 'bar' })
+snap(MyComponent) 
+snap(MyComponent, { foo: 'bar' })
 ```
 
 ### target: <ReactElement />
 ```javascript
-snap(<ReactElement foo='bar' />)
+snap(<MyComponent foo='bar' />)
 ```
 
 ### target: Component Instance
 ```javascript
 import renderer from 'react-test-renderer'
-const instance = renderer.create(<ReactElement />)
+const instance = renderer.create(<MyComponent />)
 snap(instance)
 ```
 
 ### target: Component JSON Tree
 ```javascript
 import renderer from 'react-test-renderer'
-const instance = renderer.create(<ReactElement />)
-snap(instace.toJSON())
+const instance = renderer.create(<MyComponent />)
+const tree = instace.toJSON()
+snap(tree)
 ```
 
 ### target: Anything
