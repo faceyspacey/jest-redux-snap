@@ -6,58 +6,58 @@ import { isClass, isTree, isElement, isInstance } from './utils'
 import { DeepRenderer, ShallowRenderer } from './renderer'
 
 
-export default function createRenderer(target, props, deep = true) {
+export default function createRenderer(Target, props, deep = true) {
   if (typeof props === 'boolean') {
     deep = props
     props = undefined
   }
 
-  if (!deep) {
-    return _createShallowRenderer(target, props)
+  if (deep === false) {
+    return _createShallowRenderer(Target, props)
   }
 
   let tree
   let instance
 
-  if (isClass(target)) {
-    instance = renderer.create(<target {...props} />)
+  if (isClass(Target)) {
+    instance = renderer.create(<Target {...props} />)
   }
-  else if (isTree(target)) {
-    tree = target
+  else if (isTree(Target)) {
+    tree = Target
   }
-  else if (isElement(target)) {
-    instance = renderer.create(target)
+  else if (isElement(Target)) {
+    instance = renderer.create(Target)
   }
-  else if (isInstance(target)) {
-    instance = target
+  else if (isInstance(Target)) {
+    instance = Target // note: createApp() always provides an instance
   }
   else {
-    tree = target
+    tree = Target
   }
 
   return new DeepRenderer(instance, tree)
 }
 
 
-export function _createShallowRenderer(target, props) {
+export function _createShallowRenderer(Target, props) {
   const renderer = ReactTestUtils.createRenderer()
 
   let tree
   let element
 
-  if (isClass(target)) {
-    element = <target {...props} />
+  if (isClass(Target)) {
+    element = <Target {...props} />
     renderer.render(element)
   }
-  else if (isTree(target)) {
-    tree = target
+  else if (isTree(Target)) {
+    tree = Target
   }
-  else if (isElement(target)) {
-    element = target
+  else if (isElement(Target)) {
+    element = Target
     renderer.render(element)
   }
   else {
-    tree = target
+    tree = Target
   }
 
   return new ShallowRenderer(renderer, element, tree)
