@@ -83,7 +83,7 @@ and you try passing `false` as a third parameter, you will see this difference:
 ```
 
 So obviously if you pass `false`, the system won't try to traverse imported components, but rather
-will just snapshot the props passed to it. 
+will just snapshot the props passed to it, in this case: `ShallowComponent`.
 
 This is extremely useful for Jest, because it saves
 you from having to mock child components, which in turn saves you from having to create a separate file 
