@@ -196,7 +196,7 @@ expect(app.getState()).toMatchSnapshot()
 app.snap()
 ```
 
-So that's 2 or 3 snapshots it will take, depending on whether you supply a thunk or an action object.
+So that's 2 or 3 snapshots it will take, depending on whether you supply a thunk or an action object. This is the *BFG 9000* of **Jest Redux Snap**.
 
 
 
