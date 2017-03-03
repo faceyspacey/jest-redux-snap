@@ -52,14 +52,20 @@ const addMethods = (app, store, element) => {
   app.getState = () => store.getState()
   app.dispatch = action => store.dispatch(action)
 
-  app.snapAction = (action) => {
-    if (typeof action !== 'function') {
-      snap(action)
+  app.snap = (action) => {
+    if (!action) {
+      expect(app.tree()).toMatchSnapshot()
+    }
+    else {
+      const actionShot = typeof action !== 'function' ? action : 'thunk'
+      snap(actionShot)
+
+      store.dispatch(action)
+      snap(store.getState())
+      app.snap()
     }
 
-    store.dispatch(action)
-    snap(store.getState())
-    app.snap()
+    return app
   }
 
   app.snapState = () => snap(app.getState())

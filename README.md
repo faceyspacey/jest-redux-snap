@@ -186,7 +186,7 @@ The equivalent of:
 expect(app.getState()).toMatchSnapshot()
 ```
 
-### app.snapAction(action)
+### app.snap(action)
 The equivalent of: 
 
 ```

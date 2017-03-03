@@ -30,6 +30,20 @@ describe('createApp(store, Class) ', () => {
     app.snap()
   })
 
+  it('app.snap(action)', () => {
+    const store = configureStore()
+    const app = createApp(store, Component)
+
+    app.snap({ type: 'INCREMENT' })
+  })
+
+  it('app.snap(thunkAction)', () => {
+    const store = configureStore()
+    const app = createApp(store, Component)
+
+    app.snap(dispatch => dispatch({ type: 'INCREMENT' }))
+  })
+
   it('app.tree()', () => {
     const store = configureStore()
     const app = createApp(store, Component)
@@ -91,13 +105,6 @@ describe('createApp(store, Class) ', () => {
     app.dispatch({ type: 'INCREMENT' })
 
     app.snapState()
-  })
-
-  it('app.snapAction()', () => {
-    const store = configureStore()
-    const app = createApp(store, Component)
-
-    app.snapAction({ type: 'INCREMENT' })
   })
 })
 

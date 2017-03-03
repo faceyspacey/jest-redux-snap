@@ -1,6 +1,6 @@
 {
   "name": "jest-redux-snap",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "reactive test helpers for redux and jest",
   "main": "dist/index.js",
   "files": [
@@ -50,6 +50,7 @@
     "react-dom": "^15.4.2",
     "react-redux": "^4.x",
     "redux": "^3.x",
+    "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.0"
   },
   "peerDependencies": {

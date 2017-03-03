@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snap(target, props) - deep target == any 1`] = `
+Object {
+  "plain": "object",
+}
+`;
+
+exports[`snap(target, props) - deep target == class 1`] = `
+<div>
+  <span>
+    A TITLE
+  </span>
+  <div
+    className="foo"
+    id="shallowComponent"
+  />
+</div>
+`;
+
+exports[`snap(target, props) - deep target == element 1`] = `
+<div>
+  <span>
+    A TITLE
+  </span>
+  <div
+    className="bar"
+    id="shallowComponent"
+  />
+</div>
+`;
+
+exports[`snap(target, props) - deep target == insta 1`] = `
+<div>
+  <span>
+    A TITLE
+  </span>
+  <div
+    className="baz"
+    id="shallowComponent"
+  />
+</div>
+`;
+
+exports[`snap(target, props) - deep target == instance 1`] = `
+<div>
+  <span>
+    A TITLE
+  </span>
+  <div
+    className="baz"
+    id="shallowComponent"
+  />
+</div>
+`;
+
+exports[`snap(target, props) - deep target == tree 1`] = `
+<div>
+  <span>
+    A TITLE
+  </span>
+  <div
+    className="baz"
+    id="shallowComponent"
+  />
+</div>
+`;
+
+exports[`snap(target, props) - deep target == tree 2`] = `
+<div>
+  <span>
+    A TITLE
+  </span>
+  <div
+    className="baz"
+    id="shallowComponent"
+  />
+</div>
+`;
+
+exports[`snap(target, props, false) - shallow target == any 1`] = `
+Object {
+  "plain": "object",
+}
+`;
+
+exports[`snap(target, props, false) - shallow target == class 1`] = `
+<div
+  className="foo"
+  id="shallowComponent"
+/>
+`;
+
+exports[`snap(target, props, false) - shallow target == element 1`] = `
+<div
+  className="bar"
+  id="shallowComponent"
+/>
+`;
+
+exports[`snap(target, props, false) - shallow target == tree 1`] = `
+<div
+  className="baz"
+  id="shallowComponent"
+/>
+`;
