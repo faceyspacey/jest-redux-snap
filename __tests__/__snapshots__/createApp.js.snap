@@ -25,17 +25,6 @@ exports[`createApp(store, Class)  app.dispatch() 1`] = `
 </div>
 `;
 
-exports[`createApp(store, Class)  app.dispatch() 2`] = `
-<div>
-  <h1>
-    a title
-  </h1>
-  <span>
-    0
-  </span>
-</div>
-`;
-
 exports[`createApp(store, Class)  app.getState() 1`] = `
 Object {
   "empty": false,
@@ -64,29 +53,6 @@ exports[`createApp(store, Class)  app.snap() 1`] = `
 </div>
 `;
 
-exports[`createApp(store, Class)  app.snap() 2`] = `undefined`;
-
-exports[`createApp(store, Class)  app.snap() 3`] = `
-Object {
-  "empty": false,
-  "num": 1,
-}
-`;
-
-exports[`createApp(store, Class)  app.snap() 4`] = `
-<div>
-  <h1>
-    a title
-  </h1>
-  <span>
-    1
-  </span>
-  <span>
-    something
-  </span>
-</div>
-`;
-
 exports[`createApp(store, Class)  app.snap(action) 1`] = `
 Object {
   "type": "INCREMENT",
@@ -101,33 +67,6 @@ Object {
 `;
 
 exports[`createApp(store, Class)  app.snap(action) 3`] = `
-<div>
-  <h1>
-    a title
-  </h1>
-  <span>
-    1
-  </span>
-  <span>
-    something
-  </span>
-</div>
-`;
-
-exports[`createApp(store, Class)  app.snap(action) 4`] = `
-Object {
-  "type": "INCREMENT",
-}
-`;
-
-exports[`createApp(store, Class)  app.snap(action) 5`] = `
-Object {
-  "empty": false,
-  "num": 1,
-}
-`;
-
-exports[`createApp(store, Class)  app.snap(action) 6`] = `
 <div>
   <h1>
     a title
@@ -171,34 +110,6 @@ Object {
 }
 `;
 
-exports[`createApp(store, Class)  app.snapState() 2`] = `
-Object {
-  "empty": false,
-  "num": 1,
-}
-`;
-
-exports[`createApp(store, Class)  app.snapState() 3`] = `
-Object {
-  "empty": false,
-  "num": 1,
-}
-`;
-
-exports[`createApp(store, Class)  app.snapState() 4`] = `
-<div>
-  <h1>
-    a title
-  </h1>
-  <span>
-    1
-  </span>
-  <span>
-    something
-  </span>
-</div>
-`;
-
 exports[`createApp(store, Class)  app.tree() 1`] = `
 <div>
   <h1>
@@ -239,17 +150,6 @@ exports[`createApp(store, Class)  app.tree() and app.component().toJSON() update
 `;
 
 exports[`createApp(store, Class)  app.tree() and app.component().toJSON() updates in response to state changes 3`] = `
-<div>
-  <h1>
-    a title
-  </h1>
-  <span>
-    1
-  </span>
-</div>
-`;
-
-exports[`createApp(store, Class)  app.tree() and app.component().toJSON() updates in response to state changes 4`] = `
 <div>
   <h1>
     a title

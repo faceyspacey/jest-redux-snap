@@ -30,18 +30,6 @@ exports[`snap(target, props) - deep target == element 1`] = `
 </div>
 `;
 
-exports[`snap(target, props) - deep target == insta 1`] = `
-<div>
-  <span>
-    A TITLE
-  </span>
-  <div
-    className="baz"
-    id="shallowComponent"
-  />
-</div>
-`;
-
 exports[`snap(target, props) - deep target == instance 1`] = `
 <div>
   <span>
@@ -55,18 +43,6 @@ exports[`snap(target, props) - deep target == instance 1`] = `
 `;
 
 exports[`snap(target, props) - deep target == tree 1`] = `
-<div>
-  <span>
-    A TITLE
-  </span>
-  <div
-    className="baz"
-    id="shallowComponent"
-  />
-</div>
-`;
-
-exports[`snap(target, props) - deep target == tree 2`] = `
 <div>
   <span>
     A TITLE
