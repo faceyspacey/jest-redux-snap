@@ -116,7 +116,7 @@ That said, `mapStateToProps` is just a frill feature. The most value you will ge
 with the redux store.  
 
 
-### app.snap()
+### 📸 app.snap()
 Take a snapshot of the reactive component contained within `app`. If you `dispatch` any actions on the
 store, no more work is required to capture an updated snapshot of the component. Just call `app.snap()` again.
 
