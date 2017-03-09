@@ -1,5 +1,7 @@
 # Jest Redux Snap
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/faceyspacey/jest-redux-snap.svg)](https://greenkeeper.io/)
+
 *Jest Redux Snap* solves a core problem with testing Redux apps: keeping your components up to date as you take snapshots of them.
 
 It lets you think of the area of your application that you're writing tests for as an `app` object, which you can call `app.dispatch()` and `app.snap()` on any time you want,
